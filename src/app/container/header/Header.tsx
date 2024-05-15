@@ -1,7 +1,19 @@
+import { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Buttons from "@/app/components/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Model from "@/app/components/Model";
+import Table from "@/app/container/table/Table";
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 export default function Header() {
+  const [open, setOpen] = useState(false);
+  const addClick = () => {
+    setOpen(true);
+  };
+
+  const handleCloseClick = () => {
+    setOpen(false);
+  };
   return (
     <div>
       <Grid
@@ -17,7 +29,19 @@ export default function Header() {
           <h1>Contacts</h1>
         </Grid>
         <Grid item xs={4}>
-          <Buttons variant="contained" text="Add" startIcon={<DeleteIcon />} />
+          <Buttons
+            variant="contained"
+            text="Add"
+            startIcon={<PersonAddAlt1Icon />}
+            onClick={addClick}
+          />
+          <Model
+            open={open}
+            setOpen={setOpen}
+            handleClose={handleCloseClick}
+            title="ADD Contacts"
+            component={<Table />}
+          />
         </Grid>
       </Grid>
     </div>
