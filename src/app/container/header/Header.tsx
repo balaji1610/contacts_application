@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Grid from "@mui/material/Grid";
-import Buttons from "@/app/components/Button";
+import Buttons from "@/app/components/button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Model from "@/app/components/Model";
 import Table from "@/app/container/table/Table";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import AddContactsForm from "@/app/container/AddContacts/AddContactsForm";
 export default function Header() {
   const [open, setOpen] = useState(false);
   const addClick = () => {
@@ -40,7 +41,7 @@ export default function Header() {
             setOpen={setOpen}
             handleClose={handleCloseClick}
             title="ADD Contacts"
-            component={<Table />}
+            component={<AddContactsForm />}
           />
         </Grid>
       </Grid>
