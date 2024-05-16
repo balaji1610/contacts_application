@@ -8,15 +8,13 @@ import React, { Dispatch, SetStateAction } from "react";
 
 interface ModelType {
   open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
   handleClose: () => void;
   title: string;
-  component: React.ReactNode;
+  component?: React.ReactNode;
 }
 export default function Model({
   open,
   handleClose,
-  setOpen,
   title,
   component,
 }: ModelType) {
@@ -54,7 +52,6 @@ export default function Model({
         <DialogActions>
           <Grid container xs={12}>
             {component}
-            {/* <AddFrom setOpen={setOpen} handleClose={handleClose} /> */}
           </Grid>{" "}
         </DialogActions>
       </Dialog>

@@ -6,10 +6,13 @@ import Model from "@/app/components/Model";
 import Table from "@/app/container/table/Table";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import AddContactsForm from "@/app/container/AddContacts/AddContactsForm";
+import { useApplicationContext } from "@/app/context/communityContext";
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const { open, setOpen, setIsUpdate } = useApplicationContext();
+
   const addClick = () => {
     setOpen(true);
+    setIsUpdate(false);
   };
 
   const handleCloseClick = () => {
@@ -38,13 +41,16 @@ export default function Header() {
           />
           <Model
             open={open}
-            setOpen={setOpen}
             handleClose={handleCloseClick}
             title="ADD Contacts"
             component={<AddContactsForm />}
           />
         </Grid>
       </Grid>
+
+      <div>
+        <Table />
+      </div>
     </div>
   );
 }

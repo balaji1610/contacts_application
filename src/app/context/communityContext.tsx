@@ -8,9 +8,19 @@ import React, {
 } from "react";
 
 interface ApplicationContextType {
-  InvokeHook: number;
-  setInvokeHook: Dispatch<SetStateAction<number>>;
-  addClick: () => void;
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  contacts: any;
+  setContacts: Dispatch<SetStateAction<any>>;
+  editIndex: number;
+  setEditIndex: Dispatch<SetStateAction<any>>;
+  updateContacts: any;
+  setUpdateContacts: Dispatch<SetStateAction<any>>;
+  contactsList: any;
+  isUpdate: boolean;
+  setIsUpdate: Dispatch<SetStateAction<boolean>>;
+  editModel: boolean;
+  setModel: Dispatch<SetStateAction<boolean>>;
 }
 
 const ApplicationContext = createContext<ApplicationContextType | undefined>(
@@ -22,15 +32,36 @@ interface ContextProps {
 }
 
 const ApplicationProvider: React.FC<ContextProps> = ({ children }) => {
-  const [InvokeHook, setInvokeHook] = useState<number>(1);
-
-  const addClick = () => {
-    setInvokeHook((prev) => prev + 1);
+  const contactsList = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    contactnumber: "",
+    id: 0,
   };
-
+  const [open, setOpen] = useState<boolean>(false);
+  const [contacts, setContacts] = useState([]);
+  const [editIndex, setEditIndex] = useState<number>(-1);
+  const [updateContacts, setUpdateContacts] = useState(contactsList);
+  const [isUpdate, setIsUpdate] = useState<boolean>(false);
+  const [editModel, setModel] = useState<boolean>(false);
   return (
     <ApplicationContext.Provider
-      value={{ InvokeHook, setInvokeHook, addClick }}
+      value={{
+        open,
+        setOpen,
+        contacts,
+        setContacts,
+        editIndex,
+        setEditIndex,
+        updateContacts,
+        setUpdateContacts,
+        contactsList,
+        isUpdate,
+        setIsUpdate,
+        editModel,
+        setModel,
+      }}
     >
       {children}
     </ApplicationContext.Provider>

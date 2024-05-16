@@ -6,10 +6,11 @@ interface IProps {
   text: string;
   variant: "outlined" | "contained";
   startIcon?: React.ReactElement;
-  onClick: () => void;
+  onClick?: (data?: any, ee?: any) => void;
+  type?: "submit";
 }
-const Buttons = ({ text, variant, startIcon, onClick }: IProps) => (
-  <Button variant={variant} startIcon={startIcon} onClick={onClick}>
+const Buttons = ({ text, variant, startIcon, onClick, type }: IProps) => (
+  <Button type={type} variant={variant} startIcon={startIcon} onClick={onClick}>
     {text}
   </Button>
 );
