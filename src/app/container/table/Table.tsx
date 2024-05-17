@@ -9,7 +9,8 @@ import {
 import Buttons from "@/app/components/button";
 import Model from "@/app/components/Model";
 import AddContactsForm from "@/app/container/AddContacts/AddContactsForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Search from "@/app/container/header/Search";
 import Grid from "@mui/material/Grid";
 export default function Table() {
   const {
@@ -22,7 +23,11 @@ export default function Table() {
     setContacts,
     setModel,
     editIndex,
+    searchTerm,
+    searchContacts,
+    toggle,
   } = useApplicationContext();
+
   const editClick = (getindex: any, getdata: any) => {
     setModel(true);
     setIsUpdate(true);
@@ -50,40 +55,42 @@ export default function Table() {
     },
     {
       field: "firstname",
-      headerName: "First Name",
+      headerName: "FIRST NAME",
       width: 120,
     },
-    { field: "lastname", headerName: "Last Name", width: 90 },
+    { field: "lastname", headerName: "LAST NAME", width: 120 },
     {
       field: "email",
-      headerName: "Email",
+      headerName: "EMAIL",
       width: 220,
     },
     {
       field: "contactnumber",
-      headerName: "Contact Number",
-      width: 120,
+      headerName: "CONTACT NUMBER",
+      width: 150,
     },
     {
       field: "actions",
-      headerName: "Edit",
-      width: 125,
+      headerName: "EDIT",
+      width: 90,
       renderCell: (params: GridRenderCellParams) => (
         <Buttons
           variant="contained"
           text="EDIT"
+          color="success"
           onClick={() => editClick(params.id, params.row)}
         />
       ),
     },
     {
       field: "action",
-      headerName: "Delete",
+      headerName: "DELETE",
       width: 125,
       renderCell: (params: GridRenderCellParams) => (
         <Buttons
           variant="contained"
           text="DELETE"
+          color="error"
           onClick={() => deleteClick(params.id)}
         />
       ),
@@ -92,28 +99,37 @@ export default function Table() {
 
   return (
     <div>
-      {" "}
+      <div>
+        {" "}
+        <Search />
+      </div>
+
       <Model
         open={editModel}
         handleClose={handleCloseClick}
         title="Update Contacts"
         component={<AddContactsForm />}
       />
-      <Grid container>
-        <Grid item xs={2}></Grid>
-        <Grid item xs={8}>
-          <div>
-            <DataGrid
-              rows={contacts}
-              columns={columns}
-              autoHeight
-              hideFooterSelectedRowCount
-              hideFooterPagination={true}
-            />
-          </div>
-        </Grid>
-        <Grid item xs={2}></Grid>
-      </Grid>
+      {toggle == "table" && (
+        <div style={{ marginTop: "25px" }}>
+          {" "}
+          <Grid container>
+            <Grid item xs={2}></Grid>
+            <Grid item xs={8}>
+              <div>
+                <DataGrid
+                  rows={searchTerm.length == 0 ? contacts : searchContacts}
+                  columns={columns}
+                  autoHeight
+                  hideFooterSelectedRowCount
+                  hideFooterPagination={true}
+                />
+              </div>
+            </Grid>
+            <Grid item xs={2}></Grid>
+          </Grid>
+        </div>
+      )}
     </div>
   );
 }

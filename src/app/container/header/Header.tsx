@@ -7,6 +7,7 @@ import Table from "@/app/container/table/Table";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import AddContactsForm from "@/app/container/AddContacts/AddContactsForm";
 import { useApplicationContext } from "@/app/context/communityContext";
+
 export default function Header() {
   const { open, setOpen, setIsUpdate } = useApplicationContext();
 
@@ -26,11 +27,12 @@ export default function Header() {
         justifyContent="space-between"
         alignItems="center"
         spacing={2}
-        height="100px"
+        height="150px"
+        border="2px solid red"
       >
         <Grid item xs={4}></Grid>
         <Grid item xs={4}>
-          <h1>Contacts</h1>
+          <h1>CONTACTS</h1>
         </Grid>
         <Grid item xs={4}>
           <Buttons
@@ -48,7 +50,7 @@ export default function Header() {
         </Grid>
       </Grid>
 
-      <div>
+      <div style={{ marginTop: "45px" }}>
         <Table />
       </div>
     </div>

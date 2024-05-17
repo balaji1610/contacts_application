@@ -21,6 +21,12 @@ interface ApplicationContextType {
   setIsUpdate: Dispatch<SetStateAction<boolean>>;
   editModel: boolean;
   setModel: Dispatch<SetStateAction<boolean>>;
+  searchTerm: string;
+  setSearchTerm: Dispatch<SetStateAction<string>>;
+  searchContacts: any;
+  setsearchContacts: Dispatch<SetStateAction<any>>;
+  toggle:string | null;
+  setToggle: Dispatch<SetStateAction<string | null>>;
 }
 
 const ApplicationContext = createContext<ApplicationContextType | undefined>(
@@ -41,10 +47,13 @@ const ApplicationProvider: React.FC<ContextProps> = ({ children }) => {
   };
   const [open, setOpen] = useState<boolean>(false);
   const [contacts, setContacts] = useState([]);
+  const [searchContacts, setsearchContacts] = useState([]);
   const [editIndex, setEditIndex] = useState<number>(-1);
   const [updateContacts, setUpdateContacts] = useState(contactsList);
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
   const [editModel, setModel] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [toggle,setToggle] =  useState<string | null>("table");
   return (
     <ApplicationContext.Provider
       value={{
@@ -61,6 +70,12 @@ const ApplicationProvider: React.FC<ContextProps> = ({ children }) => {
         setIsUpdate,
         editModel,
         setModel,
+        searchTerm,
+        setSearchTerm,
+        searchContacts,
+        setsearchContacts,
+        toggle,
+        setToggle
       }}
     >
       {children}

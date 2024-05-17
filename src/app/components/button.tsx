@@ -8,9 +8,23 @@ interface IProps {
   startIcon?: React.ReactElement;
   onClick?: (data?: any, ee?: any) => void;
   type?: "submit";
+  color?: "secondary" | "success" | "error" | "info" | "warning";
 }
-const Buttons = ({ text, variant, startIcon, onClick, type }: IProps) => (
-  <Button type={type} variant={variant} startIcon={startIcon} onClick={onClick}>
+const Buttons = ({
+  text,
+  variant,
+  startIcon,
+  onClick,
+  type,
+  color,
+}: IProps) => (
+  <Button
+    type={type}
+    variant={variant}
+    color={color}
+    startIcon={startIcon}
+    onClick={onClick}
+  >
     {text}
   </Button>
 );
