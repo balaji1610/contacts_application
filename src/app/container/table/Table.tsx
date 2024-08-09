@@ -12,6 +12,7 @@ import AddContactsForm from "@/app/container/AddContacts/AddContactsForm";
 import { useState, useEffect } from "react";
 import Search from "@/app/container/header/Search";
 import Grid from "@mui/material/Grid";
+import GridList from "@/app/container/grid/grid";
 export default function Table() {
   const {
     contacts,
@@ -130,6 +131,8 @@ export default function Table() {
           </Grid>
         </div>
       )}
+
+      {/* {toggle == "grid" && <GridList />} */}
     </div>
   );
 }
